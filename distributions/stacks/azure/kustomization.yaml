@@ -74,5 +74,5 @@ resources:
 
 # Uncomment the line below if you want to use Azure Blob Storage as Minio Object Storage
 # Make sure to edit the parameters in this folder.
-# (berndverst) Untested and not updated at the moment
+# (berndverst) Untested
 # - ./azure-object-store

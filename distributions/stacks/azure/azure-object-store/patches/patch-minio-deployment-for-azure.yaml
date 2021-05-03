@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  labels:
+    app: minio
+spec:
+  template:
+    spec:
+      containers:
+        - name: minio
+          args:
+            - gateway
+            - azure
+          env:
+            - name: AZURE_STORAGE_ACCOUNT
+              valueFrom:
+                secretKeyRef:
+                  name: mlpipeline-minio-artifact
+                  key: azurestorageaccount
+            - name: AZURE_STORAGE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mlpipeline-minio-artifact
+                  key: azurestoragekey
+          volumeMounts:
+            - mountPath: /data
+              $patch: delete
+        
+      volumes:
+        - name: data
+          $patch: delete

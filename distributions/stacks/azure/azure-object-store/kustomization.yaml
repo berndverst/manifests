@@ -5,14 +5,8 @@ bases:
 - ../../../../apps/pipeline/upstream/env/platform-agnostic-pns/
 
 patchesStrategicMerge:
-- patch.yaml
-
-- |-
-  $patch: delete
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: minio-pvc
+- patches/patch-minio-deployment-for-azure.yaml
+- patches/delete-minio-pvc.yaml
 
 secretGenerator:
 - name: mlpipeline-minio-artifact
